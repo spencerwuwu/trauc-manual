@@ -1,0 +1,107 @@
+// Place all the styles related to the page controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "semantic-ui";
+@import "color";
+@import "breakpoint";
+
+body {
+  background-color: $bg-white;
+  font-family: "quicksandregular", sans-serif;
+}
+
+#mainMenu {
+  padding-left: 50px;
+  background-color: $menu-white;
+  @media #{$small-device} {
+    padding-left: 2%;
+  }
+}
+
+.medium.text {
+  font-size: 16px;
+  @media #{$small-device} {
+    font-size: 1em;
+  }
+}
+
+.large.text {
+  font-size: 22px;
+}
+
+#body-container {
+  display: inline-block;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: $bg-white;
+}
+
+#content-container {
+  background-color: $bg-white;
+  width: 100%;
+  padding: 30px 10%;
+  display: inline-block;
+  @media #{$small-device} {
+    padding: 30px 5%;
+  }
+}
+
+.my-header {
+  display: flex;
+  width: 100%;
+  text-transform: capitalize;
+  font-variant: small-caps;
+  font-size: 1.7em;
+}
+
+.my-subheader {
+  display: flex;
+  width: 100%;
+  text-transform: capitalize;
+  font-variant: small-caps;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 6px;
+}
+
+.tab {
+  padding-left: 20px;
+}
+
+.my-content {
+  margin-top: 20px;
+  display: inline-block;
+  width: 100%;
+  padding-left: 30px;
+  padding-bottom: 30px;
+  font-size: 1.2em;
+  @media #{$small-device} {
+    padding-left: 10px;
+  }
+}
+
+.color-lighter {
+  color: #555;
+}
+
+code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  font-weight: bolder;
+  background-color: $code-highlight;
+  border-radius: 3px;
+}
+
+#scrollTop {
+  position: fixed;
+  opacity: 0.5;
+  z-index: 20;
+  bottom: 10%;
+  right: 20px;
+}

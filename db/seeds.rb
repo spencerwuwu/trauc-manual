@@ -5,3 +5,28 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#
+
+
+DatabaseCleaner.clean_with(:truncation)
+
+benchmarks = [
+  "Kaluza_sat", 
+  "PyEx_sat", 
+  "Kaluza_unsat", 
+  "PyEx_unsat", 
+  "Kaluza_unsat",
+  "PyEx_unsat"
+]
+
+
+
+benchmarks.each do |benchmark|
+  target = Target.create(name: benchmark)
+  CiJob.create(
+    target_name: target.name, 
+    target_id: target.id,
+    status: 0
+  )
+  puts "Create " + benchmark
+end

@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Trau Tester
+
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+
+  body
+    = render(partial: "partials/header")
+    #body-container
+      = yield
+

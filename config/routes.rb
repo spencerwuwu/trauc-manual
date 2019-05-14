@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'page#index'
+
+  get '/log/:id', :to => 'page#log', :as => 'log'
+  get '/logerr/:id', :to => 'page#logerr', :as => 'logerr'
+  get '/run/:id', :to => 'page#run', :as => 'run'
 end

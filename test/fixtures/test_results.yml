@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 1
+  target_id: 1
+  commit: MyString
+  sat: 1
+  unsat: 1
+  timeout: 1
+  misc: 1
+  exception: 1
+
+two:
+  date: 1
+  target_id: 1
+  commit: MyString
+  sat: 1
+  unsat: 1
+  timeout: 1
+  misc: 1
+  exception: 1

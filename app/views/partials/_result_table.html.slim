@@ -1,0 +1,55 @@
+table.ui.celled.unstackable.striped.table
+  thead.color-lighter
+    tr
+      th
+        |date
+      th
+        |sat
+      th
+        |unsat
+      th
+        |unknown
+      th
+        |timeout
+      th
+        |exception/error
+      th
+        |misc
+      th.right.aligned
+        |commit
+      th.right.aligned
+        |logs
+  tbody
+    - if result_datas != nil
+      - result_datas.each do |result|
+        tr
+          td.collapsing
+              |#{result.date}
+          td.positive.collapsing
+            |#{result.sat}
+          td.error.collapsing
+            |#{result.unsat}
+          td.error.collapsing
+            |#{result.unknown}
+          td.warning.collapsing
+            |#{result.timeout}
+          td.warning.collapsing
+            |#{result.exception}
+          td.active.collapsing
+            |#{result.misc}
+          td.collapsing.right.aligned
+            - if result.commit != "-"
+              a href="javascript:goto_commit('https://github.com/guluchen/z3','#{result.commit}');"
+                |#{result.commit}
+            - else
+              |-
+          td.collapsing.right.aligned
+            = link_to log_path(result.id) do
+              |log
+            |,  
+            = link_to logerr_path(result.id) do
+              |log.err
+            |, 
+            a href="10.32.0.255/z3-trace/#{result.name}.#{result.date}.#{result.target_name}/" target="_tab"
+              |z3-trace
+

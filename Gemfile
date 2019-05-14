@@ -20,6 +20,9 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
+gem 'delayed_job_active_record'
+
+
 group :production do
   gem 'pg'
 end
