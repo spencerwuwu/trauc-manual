@@ -23,7 +23,7 @@ def insert_sql(sql):
             -c" + "\"" + sql + "\"").read()
 
 # Usage ./write_log_to_db.py <Target id> <Target> <Benchmark> <commit>
-def main(tool_id, target, benchmark, commit):
+def main(target_id, target, benchmark, commit):
     os.environ["PGPASSWORD"] = os.environ["CI_DB_PASSWORD"]
     log_dir = os.environ["HOME"] + "/output/"
     log = log_dir + target + "." + benchmark + ".log"
@@ -37,7 +37,7 @@ def main(tool_id, target, benchmark, commit):
 
 
     sql = "INSERT INTO test_results"
-    sql = sql + "(tool_id, "
+    sql = sql + "(target_id, "
     sql = sql + "created_at, "
     sql = sql + "updated_at, "
     sql = sql + "name, "
@@ -50,7 +50,7 @@ def main(tool_id, target, benchmark, commit):
     sql = sql + "timeout," 
     sql = sql + "exception," 
     sql = sql + "misc)" 
-    sql = sql + "VALUES (" + tool_id + ",\'" 
+    sql = sql + "VALUES (" + target_id + ",\'" 
     sql = sql + datetime + "\',\'"
     sql = sql + datetime + "\',\'"
     sql = sql + target + "\',\'"
@@ -66,8 +66,6 @@ def main(tool_id, target, benchmark, commit):
 
     print(sql)
     insert_sql(sql)
-
-    insert_sql("UPDATE tools SET lastest_commit=\'" + commit + "\' WHERE id=" + tool_id + ";")
 
     # Parse log to ci_logs_full
     full_log_dir = "/home/deploy/ci_logs_full/" + target + "-" + check_date + "-" + benchmark + "/"

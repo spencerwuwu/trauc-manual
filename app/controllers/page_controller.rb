@@ -44,10 +44,13 @@ class PageController < ApplicationController
   end
 
   def run
-    target_id = params[:id]
-    cmd = "/home/spencerwu/Documents/trauc-manual/contrib/scripts/sleep.sh " + target_id + " &"
-    %x{ #{cmd} }
-    redirect_to_back_or_default
+    target_job = CiJob.where(:target_id => params[:id]).first
+    if target_job.status == 0
+      target_job.status = 1
+      target_job.save
+      target_job.delay.start_job
+    end
+    redirect_back(fallback_location: root_path)
   end
 
 end

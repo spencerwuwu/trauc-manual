@@ -21,6 +21,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'delayed_job_active_record'
+gem "daemons"
 
 
 group :production do
