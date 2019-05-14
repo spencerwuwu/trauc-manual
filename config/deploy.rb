@@ -50,7 +50,6 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       invoke 'puma:stop'
       invoke 'puma:start'
-      execute " RAILS_ENV=production #{release_path}/bin/delayed_job -n 2 restart"
     end
   end
 
