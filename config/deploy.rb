@@ -12,7 +12,7 @@ set :puma_error_log,  "#{release_path}/log/puma.error.log"
 set :puma_worker_timeout, nil
 set :delayed_job_server_role, :worker
 set :delayed_job_args, "-n 2"
-append :linked_dirs, %w{tmp/pids}
+set :linked_dirs, %w{tmp/pids}
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
