@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_14_080453) do
+ActiveRecord::Schema.define(version: 2019_05_15_081920) do
 
   create_table "ci_jobs", force: :cascade do |t|
     t.string "target_name"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 2019_05_14_080453) do
   create_table "test_results", force: :cascade do |t|
     t.integer "date"
     t.integer "target_id"
-    t.integer "target_name"
     t.string "commit"
     t.integer "sat"
     t.integer "unsat"
@@ -53,6 +52,8 @@ ActiveRecord::Schema.define(version: 2019_05_14_080453) do
     t.integer "exception"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "unknown"
+    t.string "benchmark"
   end
 
 end
