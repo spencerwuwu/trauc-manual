@@ -25,7 +25,8 @@ get_commit
 BUILD_OPTS=()
 BUILD_OPTS+=("--build-arg" "SCRIPT=install_z3_branch.sh")
 BUILD_OPTS+=("--build-arg" "SCRIPT_ARGS=$REPO_URL $BRANCH $TARGET")
-TARGET_IMAGE="${BENCHMARK}:16.04"
+BENCH_SMALL="$(echo ${BENCHMARK} | tr '[:upper:]' '[:lower:]')"
+TARGET_IMAGE="${BENCH_SMALL}:16.04"
 
 ${SCRIPT_DIR}/check_image_exsist.sh ${TARGET}
 docker build \

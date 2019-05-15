@@ -20,8 +20,8 @@ COMMIT=$5
 TARGET_IMAGE="${IMAGE}:16.04"
 
 BENCH_SMALL="$(echo ${BENCHMARK_TARGET} | tr '[:upper:]' '[:lower:]')"
-TMP_IMAGE="${TARGET}-${BENCH_SMALL}-tmp:16.04"
 TAG_NAME="${TARGET}-${BENCH_SMALL}-tmp"
+TMP_IMAGE="${TAG_NAME}-tmp:16.04"
 
 # Build an image, remove it when all done
 # Install benchmarks to image
