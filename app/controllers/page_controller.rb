@@ -53,4 +53,22 @@ class PageController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def log
+    id = params[:id]
+    result = TestResult.where(:id => params[:id]).first
+    dir = "/home/deploy/ci_logs_full/trauc-#{result.date}-#{result.benchmark}/"
+    target = dir + "#{result.benchmark}.#{result.date}.trauc.log"
+
+    @content = File.read(target)
+  end
+
+  def log
+    id = params[:id]
+    result = TestResult.where(:id => params[:id]).first
+    dir = "/home/deploy/ci_logs_full/trauc-#{result.date}-#{result.benchmark}/"
+    target = dir + "#{result.benchmark}.#{result.date}.trauc.log.err"
+
+    @content = File.read(target)
+  end
+
 end

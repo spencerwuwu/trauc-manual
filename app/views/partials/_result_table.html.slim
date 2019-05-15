@@ -39,7 +39,7 @@ table.ui.celled.unstackable.striped.table
             |#{result.misc}
           td.collapsing.right.aligned
             - if result.commit != "-"
-              a href="javascript:goto_commit('https://github.com/guluchen/z3','#{result.commit}');"
+              a href="https://github.com/guluchen/z3/commit/#{result.commit}" target="_blank"
                 |#{result.commit}
             - else
               |-
