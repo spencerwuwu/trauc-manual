@@ -10,7 +10,7 @@ DATE=$(date "+%Y%m%d")
 python3.6 check_benchmark -c=$TARGET "${BENCHMARK_TARGET}/" > /dev/null
 
 chmod 666 -R trace/
-sshpass -p $PASSWD scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r trace deploy@10.32.0.255:/home/deploy/traces/${TARGET}.${DATE}.${BENCHMARK_TARGET}
+sshpass -p $PASSWD scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r trace deploy@10.32.0.210:/home/deploy/traces/${TARGET}.${DATE}.${BENCHMARK_TARGET}
 
 
 cat ${BENCHMARK_TARGET}.${DATE}.${TARGET}.log

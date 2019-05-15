@@ -26,12 +26,14 @@ TMP_IMAGE="${TAG_NAME}-tmp:16.04"
 # Build an image, remove it when all done
 # Install benchmarks to image
 
+cd ${SCRIPT_DIR}/../
+
 BENCHMARK_DOCKER_FILE="${DOCKER_FILE_DIR}/install_benchmarks.Dockerfile"
 ${SCRIPT_DIR}/check_image_exsist.sh ${TAG_NAME}
 docker build \
   -m 4g \
-  -q \
   -f "${BENCHMARK_DOCKER_FILE}" \
+  -q \
   -t "${TMP_IMAGE}" \
   "--build-arg" \
   "DOCKER_IMAGE_BASE=${TARGET_IMAGE}" \

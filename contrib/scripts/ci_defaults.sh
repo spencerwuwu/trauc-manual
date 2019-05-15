@@ -3,7 +3,7 @@
 # Variables for host
 OUTPUT_DIR="${HOME}/output/"
 DOCKER_FILE_DIR="$(cd ${SCRIPT_DIR}/../Dockerfiles/; echo $PWD)"
-S_SCRIPT_DOCKER_FILE="./Dockerfiles/build_single_script.Dockerfile"
+S_SCRIPT_DOCKER_FILE="${DOCKER_FILE_DIR}/build_single_script.Dockerfile"
 
 BASE_IMAGE_NAME="base_ubuntu:16.04"
 Z3_DOCKER_IMAGE="z3_ubuntu:16.04"

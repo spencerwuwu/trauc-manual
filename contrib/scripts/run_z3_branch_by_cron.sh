@@ -29,6 +29,9 @@ BENCH_SMALL="$(echo ${BENCHMARK} | tr '[:upper:]' '[:lower:]')"
 TARGET_IMAGE="${BENCH_SMALL}:16.04"
 
 ${SCRIPT_DIR}/check_image_exsist.sh ${TARGET}
+
+cd ${SCRIPT_DIR}/../
+
 docker build \
   -m 4g \
   -q \
@@ -40,6 +43,6 @@ docker build \
   .
 
 # Run run_by_cron.sh with this image
-${SCRIPT_DIR}/run_by_cron.sh ${TARGET} ${BENCHMARK} ${BENCHMARK} ${TARGET_ID} ${COMMIT_HASH}
+${SCRIPT_DIR}/run_by_cron.sh ${TARGET} ${BENCH_SMALL} ${BENCHMARK} ${TARGET_ID} ${COMMIT_HASH}
 
 docker rmi ${TARGET_IMAGE} 
