@@ -62,7 +62,7 @@ class PageController < ApplicationController
     @content = File.read(target)
   end
 
-  def log
+  def logerr
     id = params[:id]
     result = TestResult.where(:id => params[:id]).first
     dir = "/home/deploy/ci_logs_full/trauc-#{result.date}-#{result.benchmark}/"

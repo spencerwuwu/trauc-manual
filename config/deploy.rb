@@ -7,12 +7,12 @@ set :user, 'deploy'
 set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
-set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
-set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
 set :puma_access_log, "#{release_path}/log/puma.access.log"
 set :puma_error_log,  "#{release_path}/log/puma.error.log"
 set :puma_worker_timeout, nil
-#set :linked_files, %w{config/master.key}
+set :delayed_job_server_role, :worker
+set :delayed_job_args, "-n 2"
+append :linked_dirs, %w{tmp/pids}
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
@@ -24,6 +24,51 @@ namespace :puma do
   end
 
   before :start, :make_dirs
+end
+
+namespace :delayed_job do
+
+  def args
+    fetch(:delayed_job_args, "")
+  end
+
+  def delayed_job_roles
+    fetch(:delayed_job_server_role, :app)
+  end
+
+  desc 'Stop the delayed_job process'
+  task :stop do
+    on roles(delayed_job_roles) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, :'bin/delayed_job', :stop
+        end
+      end
+    end
+  end
+
+  desc 'Start the delayed_job process'
+  task :start do
+    on roles(delayed_job_roles) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, :'bin/delayed_job', args, :start
+        end
+      end
+    end
+  end
+
+  desc 'Restart the delayed_job process'
+  task :restart do
+    on roles(delayed_job_roles) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, :'bin/delayed_job', args, :restart
+        end
+      end
+    end
+  end
+
 end
 
 namespace :deploy do
@@ -50,6 +95,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       invoke 'puma:stop'
       invoke 'puma:start'
+      invoke 'delayed_job:restart'
     end
   end
 
