@@ -15,8 +15,8 @@ benchmarks = [
   "PyEx_sat", 
   "Kaluza_unsat", 
   "PyEx_unsat", 
-  "Kaluza_unsat",
-  "PyEx_unsat"
+  "Kaluza_todo",
+  "PyEx_todo"
 ]
 
 
