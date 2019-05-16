@@ -93,8 +93,6 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      invoke 'puma:stop'
-      invoke 'puma:start'
       invoke 'delayed_job:restart'
     end
   end
@@ -102,7 +100,7 @@ namespace :deploy do
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
-  after  :finishing,    :restart
+  #after  :finishing,    :restart
 end
 
 # Default branch is :master
