@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :ci_jobs
+      resources :targets
+      resources :test_results
+
+      root to: "ci_jobs#index"
+    end
   root to: 'page#index'
 
   get '/log/:id', :to => 'page#log', :as => 'log'
