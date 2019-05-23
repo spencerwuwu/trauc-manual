@@ -6,8 +6,8 @@ class CiJob < ApplicationRecord
       cmd = "cd ${HOME}/trauc-manual/contrib && ./wrapper.sh #{self.target_name} #{self.target_id} > #{log} 2>&1"
       logger.debug cmd
       #%x{ #{cmd} }
-      system(cmd)
-      logger.debug "Finish #{cmd}"
+      result = system(cmd)
+      logger.debug "Finish #{cmd} with code=#{result}"
     end
     nt.join
   end

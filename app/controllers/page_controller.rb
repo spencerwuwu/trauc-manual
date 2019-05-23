@@ -29,18 +29,17 @@ class PageController < ApplicationController
     @result_sets = []
     targets = Target.all
 
+    @can_runall = true
     targets.each do |target|
       results = TestResult.where(:target_id => target.id)
       job_status = CiJob.where(:target_id => target.id).first
 
       @result_sets << ResultSet.new(target, results, job_status.status)
+      if job_status.status == 1
+          @can_runall = false
+      end
     end
-  end
 
-  def log_path
-  end
-
-  def logerr_path
   end
 
   def run
@@ -49,6 +48,18 @@ class PageController < ApplicationController
       target_job.status = 1
       target_job.save
       target_job.delay.start_job
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
+  def run_all
+    target_jobs = CiJob.all
+    target_jobs.each do |target_job|
+      if target_job.status == 0
+        target_job.status = 1
+        target_job.save
+        target_job.delay.start_job
+      end
     end
     redirect_back(fallback_location: root_path)
   end

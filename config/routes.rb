@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get '/log/:id', :to => 'page#log', :as => 'log'
   get '/logerr/:id', :to => 'page#logerr', :as => 'logerr'
   get '/run/:id', :to => 'page#run', :as => 'run'
+  get '/run_all', :to => 'page#run_all', :as => 'run_all'
 end

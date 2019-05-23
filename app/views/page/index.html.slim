@@ -1,4 +1,12 @@
 #content-container 
+  - if @can_runall
+    = link_to run_all_path() do
+        .ui.basic.blue.button
+          |Run All
+  - else
+      .ui.basic.disable.button
+        |Running
+  .my-content
   - @result_sets.each do |result_set|
     .my-header
       |#{result_set.target.name}
