@@ -7,7 +7,7 @@ BENCHMARK_TARGET=$2
 cd ${BENCHMARK_PATH}/
 
 DATE=$(date "+%Y%m%d")
-python3.6 check_benchmark -c=$TARGET "${BENCHMARK_TARGET}/" > /dev/null
+python3.6 check_partial_benchmark -c=$TARGET "${BENCHMARK_TARGET}/" > /dev/null
 
 PASSWD=deploy
 chmod 777 -R trace/
