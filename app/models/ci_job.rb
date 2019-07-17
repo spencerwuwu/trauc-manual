@@ -1,5 +1,8 @@
 class CiJob < ApplicationRecord
   belongs_to :target
+
+  after_initialize :default_values
+
   def start_job
     nt = Thread.new do
       log = "#{ENV['HOME']}/ci_logs/#{self.target_name}_latest.log"
@@ -11,4 +14,9 @@ class CiJob < ApplicationRecord
     end
     nt.join
   end
+
+  private
+    def default_values
+      self.status ||= 0
+    end
 end
